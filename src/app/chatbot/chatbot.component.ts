@@ -198,25 +198,26 @@ export class ChatbotComponent implements OnInit, AfterViewChecked {
     interval(1000)
       .pipe(
         switchMap(() => this.http.get<Message[]>(environment.getEndpoint)),
-        // map((messages: Message[]) => {
-        //   console.log(messages)
-        //   // Separate the messages from the 'System' user and other users
-        //   const systemMessages = messages.filter(message => message.user_name === 'System');
-        //   const otherMessages = messages.filter(message => message.user_name !== 'System');
+        map((messages: Message[]) => {
+          // console.log(messages)
+          // // Separate the messages from the 'System' user and other users
+          // const systemMessages = messages.filter(message => message.user_name === 'System');
+          // const otherMessages = messages.filter(message => message.user_name !== 'System');
 
-        //   // If there are no system messages, return the other messages
-        //   if (systemMessages.length === 0) {
-        //     return otherMessages;
-        //   }
+          // // If there are no system messages, return the other messages
+          // if (systemMessages.length === 0) {
+          //   return otherMessages;
+          // }
 
-        //   // Find the most recent system message
-        //   const mostRecentSystemMessage = systemMessages.reduce((prev, current) => {
-        //     return (new Date(prev.timestamp) > new Date(current.timestamp)) ? prev : current;
-        //   });
+          // // Find the most recent system message
+          // const mostRecentSystemMessage = systemMessages.reduce((prev, current) => {
+          //   return (new Date(prev.timestamp) > new Date(current.timestamp)) ? prev : current;
+          // });
 
-        //   // Combine the most recent system message with the other messages
-        //   return [...otherMessages, mostRecentSystemMessage];
-        // })
+          // // Combine the most recent system message with the other messages
+          // return [...otherMessages, mostRecentSystemMessage];
+          return [ ...messages]
+        })
       )
       .subscribe((messages: Message[]) => {
         this.store.dispatch(MessageActions.loadMessages({ messages }));
