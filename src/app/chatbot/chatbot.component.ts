@@ -8,7 +8,7 @@ import { AppState } from '../store/app.state'; // Add this import statement
 import { interval, switchMap } from 'rxjs';
 import { environment } from '../../environments/environment';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
-import { map } from 'rxjs/operators';
+import { filter, map } from 'rxjs/operators';
 
 @Component({
   selector: 'app-chatbot',
@@ -17,6 +17,7 @@ import { map } from 'rxjs/operators';
 })
 export class ChatbotComponent implements OnInit, AfterViewChecked {
   @ViewChildren('message') messageElements!: QueryList<ElementRef>;
+  private lastMessageCount = 0;
   private userHasScrolled = false;
   messages: Message[] = [];
   newMessage: string = '';
@@ -199,29 +200,18 @@ export class ChatbotComponent implements OnInit, AfterViewChecked {
       .pipe(
         switchMap(() => this.http.get<Message[]>(environment.getEndpoint)),
         map((messages: Message[]) => {
-          // console.log(messages)
-          // // Separate the messages from the 'System' user and other users
-          // const systemMessages = messages.filter(message => message.user_name === 'System');
-          // const otherMessages = messages.filter(message => message.user_name !== 'System');
-
-          // // If there are no system messages, return the other messages
-          // if (systemMessages.length === 0) {
-          //   return otherMessages;
-          // }
-
-          // // Find the most recent system message
-          // const mostRecentSystemMessage = systemMessages.reduce((prev, current) => {
-          //   return (new Date(prev.timestamp) > new Date(current.timestamp)) ? prev : current;
-          // });
-
-          // // Combine the most recent system message with the other messages
-          // return [...otherMessages, mostRecentSystemMessage];
-          return [ ...messages]
+          return [ ...messages];
+        }),
+        filter((messages: Message[]) => {
+          const newMessageCount = messages.length;
+          const hasNewMessage = newMessageCount > this.lastMessageCount;
+          this.lastMessageCount = newMessageCount;
+          return hasNewMessage;
         })
       )
       .subscribe((messages: Message[]) => {
         this.store.dispatch(MessageActions.loadMessages({ messages }));
       });
-  }
+}
 
 }
