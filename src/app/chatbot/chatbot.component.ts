@@ -200,9 +200,6 @@ export class ChatbotComponent implements OnInit, AfterViewChecked {
     interval(3000)
       .pipe(
         switchMap(() => this.http.get<Message[]>(environment.getEndpoint)),
-        map((messages: Message[]) => {
-          return messages.sort((a, b) => new Date(a.timestamp).getTime() - new Date(b.timestamp).getTime());
-        }),
         filter((messages: Message[]) => {
           const hasNewMessage = messages.some(message => new Date(message.timestamp).getTime() > this.lastMessageTimestamp);
           if (hasNewMessage) {
