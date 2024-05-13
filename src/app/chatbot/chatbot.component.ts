@@ -20,6 +20,7 @@ export class ChatbotComponent implements OnInit, AfterViewChecked {
   private lastMessageCount = 0;
   private userHasScrolled = false;
   messages: Message[] = [];
+  private postInterval = 1000;
   newMessage: string = '';
   user_name: string = '';
   thread_id: any = '';
@@ -100,6 +101,7 @@ export class ChatbotComponent implements OnInit, AfterViewChecked {
   }
 
   sendMessage() {
+    this.postInterval = 200;
     console.info("User has sent a message");
     if (this.messageForm.valid) {
       this.newMessage = this.messageForm.value.newMessage;
@@ -197,7 +199,7 @@ export class ChatbotComponent implements OnInit, AfterViewChecked {
   // }
 
   pollMessages() {
-    interval(3000)
+    interval(this.postInterval)
       .pipe(
         switchMap(() => this.http.get<Message[]>(environment.getEndpoint)),
         filter((messages: Message[]) => {
@@ -211,6 +213,8 @@ export class ChatbotComponent implements OnInit, AfterViewChecked {
       .subscribe((messages: Message[]) => {
         this.store.dispatch(MessageActions.loadMessages({ messages }));
       });
+
+      this.postInterval = 1000
   }
   
 
