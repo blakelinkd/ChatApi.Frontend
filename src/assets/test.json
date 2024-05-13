@@ -1,0 +1,41 @@
+{ "messages": [
+    {
+      "messageId": "string",
+      "threadId": "string",
+      "senderId": "string",
+      "userName": "string",
+      "recipientId": "string",
+      "timestamp": "2024-01-05T16:19:26.516Z",
+      "content": {
+        "text": "Hi i'm blake",
+        "attachments": [
+          {
+            "type": "string",
+            "url": "string"
+          }
+        ]
+      },
+      "status": "string",
+      "responseTo": "string"
+    },
+    {
+      "messageId": "string",
+      "threadId": "string",
+      "senderId": "string",
+      "userName": "string",
+      "recipientId": "string",
+      "timestamp": "2024-01-05T20:19:09.468Z",
+      "content": {
+        "text": "Hello",
+        "attachments": [
+          {
+            "type": "string",
+            "url": "string"
+          }
+        ]
+      },
+      "status": "string",
+      "responseTo": "string"
+    }
+  ]
+}
