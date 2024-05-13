@@ -162,7 +162,7 @@ export class ChatbotComponent implements OnInit, AfterViewChecked {
     };
   
     // Dispatch the action to create a new message
-    this.store.dispatch(MessageActions.createMessage({ message }));
+    // this.store.dispatch(MessageActions.createMessage({ message }));
     this.http.post(environment.postEndpoint, message).subscribe();
   
     // Clear the newMessage property to reset the input field
