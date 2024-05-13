@@ -59,10 +59,10 @@ export class ChatbotComponent implements OnInit, AfterViewChecked {
       messagesContainer.addEventListener('scroll', () => {
         this.userHasScrolled = true;
       });
-      if (!this.systemMessageSent) {
-        this.addSystemMessage('Welcome! You can set your user_name by typing "/name [your desired name]".');
-        this.systemMessageSent = true;
-      }
+      // if (!this.systemMessageSent) {
+      //   this.addSystemMessage('Welcome! You can set your user_name by typing "/name [your desired name]".');
+      //   this.systemMessageSent = true;
+      // }
     }
 
     console.info("User has entered the chatbot component")
@@ -115,7 +115,7 @@ export class ChatbotComponent implements OnInit, AfterViewChecked {
       if (parts.length === 3 && parts[1] === 'blake' && parts[2] === 'MustardAndBuns') {
         localStorage.setItem('sender_id', '4242');
         localStorage.setItem('user_name', 'Blake');
-        this.addSystemMessage('Login successful.');
+        // this.addSystemMessage('Login successful.');
         return;
       }
     }
@@ -128,11 +128,11 @@ export class ChatbotComponent implements OnInit, AfterViewChecked {
         const sender_id = localStorage.getItem('sender_id') || uuidv4();
         localStorage.setItem('user_name', parts[1]);
   
-        if (oldName) {
-          this.addSystemMessage(`${oldName} changed their name to ${parts[1]}.`);
-        } else {
-          this.addSystemMessage(`${sender_id} changed their name to ${parts[1]}.`);
-        }
+        // if (oldName) {
+        //   this.addSystemMessage(`${oldName} changed their name to ${parts[1]}.`);
+        // } else {
+        //   this.addSystemMessage(`${sender_id} changed their name to ${parts[1]}.`);
+        // }
   
         return;
       }
@@ -170,31 +170,31 @@ export class ChatbotComponent implements OnInit, AfterViewChecked {
   }
   
 
-  addSystemMessage(content: string) {
-    const message: Message = {
-      message_id: uuidv4(),
-      sender_id: '00000000-0000-0000-0000-000000000000',
-      thread_id: this.thread_id,
-      user_name: 'System',
-      recipient_id: uuidv4(),
-      timestamp: new Date().toISOString(),
-      text: content,
+  // addSystemMessage(content: string) {
+  //   const message: Message = {
+  //     message_id: uuidv4(),
+  //     sender_id: '00000000-0000-0000-0000-000000000000',
+  //     thread_id: this.thread_id,
+  //     user_name: 'System',
+  //     recipient_id: uuidv4(),
+  //     timestamp: new Date().toISOString(),
+  //     text: content,
   
-      // Handling Attachments
-      // Option 1: Serialize the list of attachments into a single string
-      // attachmentsJson: JSON.stringify([]),
+  //     // Handling Attachments
+  //     // Option 1: Serialize the list of attachments into a single string
+  //     // attachmentsJson: JSON.stringify([]),
   
-      // Option 2: Store only the first attachment, if that's sufficient for your use case
-      // firstAttachmentType: '',
-      // firstAttachmentUrl: '',
+  //     // Option 2: Store only the first attachment, if that's sufficient for your use case
+  //     // firstAttachmentType: '',
+  //     // firstAttachmentUrl: '',
   
-      status: '',
-      response_to: ''
-    };
-    console.log(`message:\n${JSON.stringify(message, null, 2)}`)
-    this.store.dispatch(MessageActions.createMessage({ message }));
-    this.http.post(environment.postEndpoint, message).subscribe();
-  }
+  //     status: '',
+  //     response_to: ''
+  //   };
+  //   console.log(`message:\n${JSON.stringify(message, null, 2)}`)
+  //   this.store.dispatch(MessageActions.createMessage({ message }));
+  //   this.http.post(environment.postEndpoint, message).subscribe();
+  // }
 
   pollMessages() {
     interval(3000)
