@@ -1,6 +1,6 @@
 <div>
   <ul class="messages">
-    <li #message *ngFor="let message of messages">
+    <li #message *ngFor="let message of messages.reverse()">
       <span [style.color]="message.sender_id === 'system' ? 'gray' : getUserIdColor(message.sender_id)">
         {{ message.user_name ? message.user_name : message.sender_id }}
       </span>: {{ message.text }}

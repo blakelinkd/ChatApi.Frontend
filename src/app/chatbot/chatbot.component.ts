@@ -27,6 +27,7 @@ export class ChatbotComponent implements OnInit, AfterViewChecked {
   messageForm!: FormGroup; // Add the definite assignment assertion operator (!) to indicate that the property will be initialized in the constructor
   nameForm!: FormGroup; // Add the definite assignment assertion operator (!) to indicate that the property will be initialized in the constructor
   title = 'chatbot';
+  lastMessageTimestamp: number = 0;
 
   constructor(private fb: FormBuilder, private http: HttpClient, private store: Store<AppState>) {
     this.thread_id = localStorage.getItem('thread_id') || uuidv4();
@@ -200,18 +201,20 @@ export class ChatbotComponent implements OnInit, AfterViewChecked {
       .pipe(
         switchMap(() => this.http.get<Message[]>(environment.getEndpoint)),
         map((messages: Message[]) => {
-          return [ ...messages];
+          return messages.sort((a, b) => new Date(a.timestamp).getTime() - new Date(b.timestamp).getTime());
         }),
         filter((messages: Message[]) => {
-          const newMessageCount = messages.length;
-          const hasNewMessage = newMessageCount > this.lastMessageCount;
-          this.lastMessageCount = newMessageCount;
+          const hasNewMessage = messages.some(message => new Date(message.timestamp).getTime() > this.lastMessageTimestamp);
+          if (hasNewMessage) {
+            this.lastMessageTimestamp = new Date(messages[messages.length - 1].timestamp).getTime();
+          }
           return hasNewMessage;
         })
       )
       .subscribe((messages: Message[]) => {
         this.store.dispatch(MessageActions.loadMessages({ messages }));
       });
-}
+  }
+  
 
 }
