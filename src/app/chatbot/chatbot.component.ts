@@ -197,7 +197,7 @@ export class ChatbotComponent implements OnInit, AfterViewChecked {
   }
 
   pollMessages() {
-    interval(1000)
+    interval(3000)
       .pipe(
         switchMap(() => this.http.get<Message[]>(environment.getEndpoint)),
         map((messages: Message[]) => {
