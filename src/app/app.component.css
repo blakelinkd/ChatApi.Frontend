@@ -83,17 +83,17 @@
   }
 
   a {
-    background-color: #007BFF;
-    color: #ffffff;
+    /* background-color: #007BFF; */
+    padding-top: 1rem;
+    color: #007bff;
     border: none;
-    padding: 10px;
     border-radius: 5px;
     cursor: pointer;
     text-decoration: none;
   }
   
   a:hover {
-    background-color: #0056b3;
+    color: #0056b3;
   }
   
   .messages {
