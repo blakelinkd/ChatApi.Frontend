@@ -1,5 +1,5 @@
 import { OnInit, Component, ViewChildren, QueryList, ElementRef, AfterViewChecked } from '@angular/core';
-import { HttpClient } from '@angular/common/http';
+import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Store } from '@ngrx/store';
 import { v4 as uuidv4 } from 'uuid';
 import { Message } from '../models/message.model';
@@ -65,13 +65,13 @@ export class ChatbotComponent implements OnInit, AfterViewChecked {
       //   this.systemMessageSent = true;
       // }
     }
-
+    let sender_id: string = '';
     console.info("User has entered the chatbot component")
     if (!localStorage.getItem('sender_id')) {
-      const sender_id = uuidv4();
+       sender_id = uuidv4();
       localStorage.setItem('sender_id', sender_id);
     }
-    this.pollMessages();
+    this.pollMessages(sender_id);
 
     this.store.select((state: any) => state.message).subscribe(messages => {
       this.messages = [...messages].reverse();
@@ -198,10 +198,16 @@ export class ChatbotComponent implements OnInit, AfterViewChecked {
   //   this.http.post(environment.postEndpoint, message).subscribe();
   // }
 
-  pollMessages() {
+  pollMessages(sender: string) {
+    const currentDate = new Date();
+    const currentTimestamp = currentDate.getTime().toString();
+    const headers = new HttpHeaders().set('timestamp', currentTimestamp);
+
     interval(this.postInterval)
       .pipe(
-        switchMap(() => this.http.get<Message[]>(environment.getEndpoint)),
+        switchMap(() => this.http.get<Message[]>(environment.getEndpoint,
+          { headers: headers}
+        )),
         filter((messages: Message[]) => {
           const hasNewMessage = messages.some(message => new Date(message.timestamp).getTime() > this.lastMessageTimestamp);
           if (hasNewMessage) {
