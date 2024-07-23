@@ -1,6 +1,5 @@
 <div>
   <ul class="messages">
-    <p><i>*Chat is off until I pay my aws bill 😔*</i></p>
     <li #message *ngFor="let message of messages">
       <span [style.color]="message.sender_id === 'system' ? 'gray' : getUserIdColor(message.sender_id)">
         {{ message.user_name ? message.user_name : message.sender_id }}
