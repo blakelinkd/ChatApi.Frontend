@@ -3,3 +3,8 @@
   [headers.values]
     Access-Control-Allow-Origin = "*"
     Content-Type = "application/json"
+
+[[redirects]]
+  from = "/*"
+  to = "/index.html"
+  status = 200
