@@ -5,8 +5,17 @@
     Content-Type = "application/json"
 
 [[redirects]]
+  from = "/redirect/github"
+  to = "/github-redirect.html"
+  status = 302
+
+[[redirects]]
+  from = "/redirect/linkedin"
+  to = "/linkedin-redirect.html"
+  status = 302
+
+[[redirects]]
   from = "/*"
   to = "/index.html"
   status = 200
-
 

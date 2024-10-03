@@ -1,0 +1,29 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Redirecting to LinkedIn</title>
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-4DHZQVRZSB"></script>
+    <script>
+      window.dataLayer = window.dataLayer || [];
+      function gtag(){dataLayer.push(arguments);}
+      gtag('js', new Date());
+
+      gtag('config', 'G-4DHZQVRZSB');
+
+      // Tracking event
+      gtag('event', 'click', {
+        'event_category': 'Link',
+        'event_label': 'https://linkedin.com/in/blakelinkd',
+        'value': 1
+      });
+
+      // Redirecting
+      window.location.href = 'https://linkedin.com/in/blakelinkd';
+    </script>
+</head>
+<body>
+    <p>Redirecting to LinkedIn...</p>
+</body>
+</html>

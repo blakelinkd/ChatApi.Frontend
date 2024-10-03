@@ -25,7 +25,8 @@
           "options": {
             "assets": [
               "src/favicon.ico",
-              "src/assets"
+              "src/assets",
+              "src/redirects"
             ],
             "outputPath": "dist/chat-api.frontend",
             "index": "src/index.html",
