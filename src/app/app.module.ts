@@ -6,12 +6,14 @@ import { ChatbotComponent } from './chatbot/chatbot.component';
 import { HttpClientModule } from '@angular/common/http'; // Import HttpClientModule
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { StoreModule } from '@ngrx/store'; // Import StoreModule
-import { messageReducer } from './store/message/message.reducer'; // Import your message reducer
+import { messageReducer } from './store/message/message.reducer';
+import { RedirectComponent } from './redirect/redirect.component'; // Import your message reducer
 
 @NgModule({
   declarations: [
     AppComponent,
-    ChatbotComponent
+    ChatbotComponent,
+    RedirectComponent
   ],
   imports: [
     BrowserModule,
