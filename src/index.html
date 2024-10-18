@@ -234,13 +234,13 @@ Python 3.11.7</code></pre>
                 <h3>Job boards</h3>
                 <p>Companies use many different sites to post their jobs. Some are easier to scrape than others and some have sophisticated automation detection(like indeed.com) and will make it very difficult to scrape. We've got to find a board that does not have this restriction, and also we need to keep in mind that many of the sites have rate limiters, so when we are collecting data we need to do it at a slow pace so we don't overload the server. For the sake of this demo I'm going to pick the site softgarden.io. I search google with a query like: <code>site:softgarden.io</code> Senior Java Developer and I see this link:
 
-                <img src="/images/google_link.png" alt="Google search results showing softgarden.io job listings">
+                <img src="/assets/google_link.png" alt="Google search results showing softgarden.io job listings">
 
                 <p>Cool, I am one of the genders so this is great. Notice the subdomain serviceplan in the link https://serviceplan.softgarden.io/job/49387133/Senior-Full-Stack-Developer-all-genders-?l=en This is usually a url-friendly version of the companies name. We also se other domains such as https://inform-software.softgarden.io/. So, if you want to find if a company has jobs posted on softgarden.io you could query google with site:softgarden.io Novatec job and we might see something like this:</p>
-                <img src="images/google_novatec_link.png" alt="Google search results showing Novatec job listings on softgarden.io">
+                <img src="/assets/google_novatec_link.png" alt="Google search results showing Novatec job listings on softgarden.io">
                 <p>When we visit the link we see that particular job post. We want all of the posts by this particular company. To do this we'll just knock everything off the url that comes after the domain and get a link like: <a href="https://novatec-software.softgarden.io/">Novatec Software Jobs</a></p></p>
                 <p>Cool, now we can see all of their jobs posts:
-                <img src="images/novatec_jobs_board.png" alt="Novatec Software job board">
+                <img src="/assets/novatec_jobs_board.png" alt="Novatec Software job board">
                 </p>
                 <p><em>Very Nice!</em></p>
                 <p>Let's have a look at the page source and see what the HTML of these list items looks. We can right click on one of the Job links and select Inspect. This opens up the dev tools to the underlying code.</p>
