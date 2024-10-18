@@ -1,8 +1,10 @@
-<!doctype html>
+<!DOCTYPE html>
 <html lang="en">
-  <head>
-      <!-- Google tag (gtag.js) -->
-  <script async src="https://www.googletagmanager.com/gtag/js?id=G-4DHZQVRZSB"></script>
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Blake Link's Developer Blog - Python automation for job searching and technical insights">
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-4DHZQVRZSB"></script>
   <script>
     window.dataLayer = window.dataLayer || [];
     function gtag(){dataLayer.push(arguments);}
@@ -10,84 +12,284 @@
 
     gtag('config', 'G-4DHZQVRZSB');
   </script>
-    <meta charset="utf-8">
-    <title>ChatApiFrontend</title>
-    <base href="/">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-    <link rel="icon" type="image/x-icon" href="favicon.ico">
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100..900;1,100..900&display=swap" rel="stylesheet">
-  </head>
-  <body>
-    <div class="mainLayout montserrat">
-      
-      <div class="container">
-        <div class="content">
-          <div class="info">
-            <header>
-              <h1>Blake D. Link</h1>
-              <h2>Software Developer</h2>
-              <h3>Phone: <span style="color: #007BFF;">580-650-8202</span></h3>
-              <h3>Email: <span style="color: #007BFF;">blakelinkd@gmail.com</span></h3>
-            </header>
-            
-            <section>
-              <p>
-                Howdy Folks! I'm a programmer looking for work and this is my website. 
-              </p>
-              <p class="p-text">
-                If you're here because you are reading my resume
-                say "Hello". 
-              </p>
-            </section>
-            
-          </div>
-        </div>
+    <title>Blake Link's Developer Blog</title>
+    <style>
+        :root {
+            --primary-color: #489297;
+            --text-color: #2C3E50;
+            --background-color: #f8f9fa;
+            --card-background: #ffffff;
+            --accent-color: #34495e;
+            --code-background: #f8f9fa;
+        }
 
-        <div class="content">
-          <div class="info">
+        body {
+            background-color: var(--background-color);
+            color: var(--text-color);
+            font-family: system-ui, -apple-system, sans-serif;
+            margin: 0;
+            line-height: 1.6;
+        }
+
+        header {
+            background-color: var(--primary-color);
+            color: white;
+            padding: 2rem 1rem;
+            text-align: center;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+        }
+
+        nav {
+            background-color: var(--accent-color);
+            padding: 1rem;
+            position: sticky;
+            top: 0;
+            z-index: 100;
+        }
+
+        .nav-container {
+            max-width: 800px;
+            margin: 0 auto;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        nav a {
+            color: white;
+            text-decoration: none;
+            padding: 0.5rem 1rem;
+            border-radius: 4px;
+            transition: background-color 0.3s;
+        }
+
+        nav a:hover {
+            background-color: rgba(255,255,255,0.1);
+        }
+
+        main {
+            max-width: 800px;
+            margin: 2rem auto;
+            padding: 0 1rem;
+        }
+
+        .post {
+            background-color: var(--card-background);
+            border-radius: 8px;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+            margin-bottom: 2rem;
+            padding: 1.5rem;
+        }
+
+        .post-header {
+            border-bottom: 2px solid var(--primary-color);
+            padding-bottom: 1rem;
+            margin-bottom: 1.5rem;
+        }
+
+        .post-header h2 {
+            margin: 0;
+            color: var(--primary-color);
+        }
+
+        .post-meta {
+            color: #666;
+            font-size: 0.9rem;
+            margin-top: 0.5rem;
+        }
+
+        /* Code block styling */
+        pre, code {
+            background-color: var(--code-background);
+            border-radius: 4px;
+            font-family: 'Consolas', 'Monaco', monospace;
+            font-size: 0.9em;
+        }
+
+        pre {
+            padding: 1rem;
+            overflow-x: auto;
+            border: 1px solid #ddd;
+        }
+
+        code {
+            padding: 0.2em 0.4em;
+        }
+
+        /* Images */
+        img {
+            max-width: 100%;
+            height: auto;
+            border-radius: 4px;
+            margin: 1rem 0;
+        }
+
+        /* Lists */
+        ol {
+            padding-left: 1.5rem;
+        }
+
+        li {
+            margin-bottom: 0.5rem;
+        }
+
+        h3 {
+            color: var(--primary-color);
+            margin-top: 2rem;
+        }
+
+        footer {
+            background-color: var(--accent-color);
+            color: white;
+            text-align: center;
+            padding: 2rem;
+            margin-top: 4rem;
+        }
+
+        /* Dark mode */
+        @media (prefers-color-scheme: dark) {
+            :root {
+                --background-color: #1a1a1a;
+                --card-background: #2d2d2d;
+                --text-color: #e0e0e0;
+                --code-background: #2d2d2d;
+            }
+            pre, code {
+                border-color: #444;
+            }
+        }
+
+        /* Responsive design */
+        @media (max-width: 600px) {
+            .nav-container {
+                flex-direction: column;
+                gap: 1rem;
+            }
+            
+            nav a {
+                display: block;
+                text-align: center;
+            }
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <h1>Blake Link's Developer Blog</h1>
+        <p>Exploring Software Development & Technology</p>
+    </header>
+
+    <nav>
+        <div class="nav-container">
+            <a href="#" aria-current="page">Home</a>
+            <a href="#">About</a>
+            <a href="#">Projects</a>
+            <a href="#">Contact</a>
+        </div>
+    </nav>
+
+    <main>
+        <article class="post">
+            <div class="post-header">
+                <h2>Find a job with Python and Selenium</h2>
+                <div class="post-meta">
+                    POSTED 10/18/2024 By Blake Link
+                </div>
+            </div>
             <section>
-                <h2>Are you looking for a job?</h2>
-               <p class="p-text">
-                I've made a couple bots for scraping and applying to jobs on Dice and Indeed.
-                
-                <a href="https://github.com/blakelinkd/joGetter" target="_blank"><b>Download Here</b></a>
+                <p>Finding a job is really hard, thankfully with basic Python and internet knowledge we can take a systematic approach that allows us to target only the jobs we are qualified for. Job seekers are advised to cater their resume for each jobs requirements but this is really a flawed approach and here is why.</p>
+
+                <ol>
+                    <li>You have to apply for approximately 1000 jobs to get a single interview. Just to get someone to look at your resume is a numbers game itself, we don't have time for this!</li>
+                    <li>We have to manage many different versions of our resume and track which resume was used to apply to each job.</li>
+                    <li>Requirements are too particular and strict. If you only have working experience with Angular but think you could be productive in React Guess what? No. Your resume is being filtered by someone who is likely non technical and doesn't know the difference, they just know that you don't check the box.</li>
+                </ol>
+
+                <p>The solution is to only apply to the jobs who's requirements fit your skill-set exactly, and to do this we need to collect data from a LOT of job posts so we can analyze and filter them.</p>
+
+                <p>To do this, we need tools to grab the data from a job board and store it into a database.</p>
+
+                <h3>The Tools</h3>
+
+                <h4>Python</h4>
+                <p>I like Python for doing this type of work because it's simple and effective. If don't know how to install and set up python you can check out this link to learn: Installing Python</p>
+
+                <h4>Selenium</h4>
+                <p>Python has built in options for extracting contents from web pages, however many job boards use JavaScript to render content inside the browser, and to capture this content we need to use a Browser Instance, and this is where Selenium comes in. Selenium let's us create a real browser session and control our interactions with the page programatically.</p>
+
+                <h4>SQLite</h4>
+                <p>We have a LOT of data to store, so excel is not going to cut it. One database table I have has about a weeks worth of job posts stored in it and is over 100MB. SQLite will also allow us to make advanced queries against our data that we'll need when it comes time to analyze and sort our jobs.</p>
+
+                <p>Run the following command, and you should the version of Python you have installed.</p>
+
+                <pre><code>python --version
+Python 3.11.7</code></pre>
+
+                <p>Now we can install the libraries we'll need</p>
+
+                <pre><code>pip install requests beautifulsoup4 selenium webdriver-manager</code></pre>
+
+                <p>Now I'll create a new folder for my project. I name mine scraper but you can do whatever you want.</p>
+
+                <h3>Job boards</h3>
+                <p>Companies use many different sites to post their jobs. Some are easier to scrape than others and some have sophisticated automation detection(like indeed.com) and will make it very difficult to scrape. We've got to find a board that does not have this restriction, and also we need to keep in mind that many of the sites have rate limiters, so when we are collecting data we need to do it at a slow pace so we don't overload the server. For the sake of this demo I'm going to pick the site softgarden.io. I search google with a query like: <code>site:softgarden.io</code> Senior Java Developer and I see this link:
+
+                <img src="/images/google_link.png" alt="Google search results showing softgarden.io job listings">
+
+                <p>Cool, I am one of the genders so this is great. Notice the subdomain serviceplan in the link https://serviceplan.softgarden.io/job/49387133/Senior-Full-Stack-Developer-all-genders-?l=en This is usually a url-friendly version of the companies name. We also se other domains such as https://inform-software.softgarden.io/. So, if you want to find if a company has jobs posted on softgarden.io you could query google with site:softgarden.io Novatec job and we might see something like this:</p>
+                <img src="images/google_novatec_link.png" alt="Google search results showing Novatec job listings on softgarden.io">
+                <p>When we visit the link we see that particular job post. We want all of the posts by this particular company. To do this we'll just knock everything off the url that comes after the domain and get a link like: <a href="https://novatec-software.softgarden.io/">Novatec Software Jobs</a></p></p>
+                <p>Cool, now we can see all of their jobs posts:
+                <img src="images/novatec_jobs_board.png" alt="Novatec Software job board">
                 </p>
+                <p><em>Very Nice!</em></p>
+                <p>Let's have a look at the page source and see what the HTML of these list items looks. We can right click on one of the Job links and select Inspect. This opens up the dev tools to the underlying code.</p>
+                <pre><code>&lt;div class="matchElement odd" style="undefined" id="job_id_49993923"&gt;</code></pre>
+
+                We see each job is wrapped in a div that has an id attribute like job_id_49993923. This gives us a good target for scraping. Copy all the code from the View Source tab and save it to the file sample_board.html. We'll use this file to work on instead of loading the page over and over as we work on our script.
+
+                <pre><code>from bs4 import BeautifulSoup
+
+# Read the HTML content from the file
+with open('sample_board.html', 'r', encoding='utf-8') as file:
+    html_content = file.read()
+
+# Parse the HTML content
+soup = BeautifulSoup(html_content, 'html.parser')
+
+# Find all divs with id starting with 'job_id_'
+job_divs = soup.find_all('div', id=lambda x: x and x.startswith('job_id_'))
+
+# Extract job details
+jobs = []
+for div in job_divs:
+    job_title = div.find('div', class_='matchValue title').text.strip()
+    job_link = div.find('a')['href']
+    job_location = div.find('div', class_='location-container').text.strip()
+    job_date = div.find('div', class_='matchValue date').text.strip()
+    base_url = "https://novatec-software.softgarden.io/"
+    full_link = base_url + job_link
+    jobs.append({'title': job_title, 'location': job_location, 'date': job_date, 'link': full_link})
+
+# Print the extracted job details
+for job in jobs:
+    print(job)</code></pre>
+
+                <p>When you run the code you should see results like:</p>
+
+                <pre><code>{'title': 'IT Talent Acquisition Specialist', 'location': 'Granada', 'date': '10/11/24', 'link': 'https://novatec-software.softgarden.io/../job/49993923/IT-Talent-Acquisition-Specialist-?jobDbPVId=160708533&l=en'}
+{'title': 'Database Engineer', 'location': 'Spain', 'date': '10/11/24', 'link': 'https://novatec-software.softgarden.io/../job/49990373/Database-Engineer?jobDbPVId=160698573&l=en'}
+{'title': 'Full-stack Software Engineer', 'location': 'Spain', 'date': '9/27/24', 'link': 'https://novatec-software.softgarden.io/../job/49472208/Full-stack-Software-Engineer?jobDbPVId=157409078&l=en'}</code></pre>
+
+                <p>This is a great start. At this point you would be able to collect a lot of job posts and filter them by the Job's title, but we're going to go further. In part 2 we'll set up the database and we'll also figure out how we're going to extract the job descriptions from the posts.</p>
+
+                <p>If you have any questions email me at blakelinkd@gmail.com</p>
             </section>
+        </article>
+    </main>
 
-            <section>
-              <h2>OCR Clipboard Monitor</h2>
-             <p class="p-text">
-              A simple PyQt5 application that uses the EasyOCR library to monitor the clipboard for images and extract any text found in them.
-              
-              <a href="https://github.com/blakelinkd/ocr" target="_blank"><b>Download Here</b></a>
-              </p>
-          </section>
-
-          <section>
-              <h2>AI Command Center Chrome Extension</h2>
-              <p class="p-text">
-                The <b>AI Command Center</b> is a Chrome extension that integrates AI capabilities right into your browser. With features like customizable prompts, real-time responses, markdown support, and text-to-speech functionality, this extension is designed to simplify and enhance your AI interactions.
-              </p>
-              <p class="p-text">
-                You can check out the source code and contribute to the project on <a href="https://github.com/blakelinkd/llm-sidebar-extension" target="_blank"><b>GitHub</b></a>.
-              </p>
-              <p class="p-text">
-                Below is a screenshot of the extension in action:
-              </p>
-              <img src="/assets/ai_command_center_screenshot.png" alt="AI Command Center Chrome Extension Screenshot" style="max-width:100%; height:auto; border:1px solid #ccc; padding:5px;">
-          </section>
-
-          </div>
-      </div>
-      </div>
-      
-      <app-root></app-root>
-          </div>
-        </div>
-      </div>
-  </div>
-  
+    <footer>
+        <p>&copy; 2024 Blake Link's Developer Blog. All rights reserved.</p>
+    </footer>
 </body>
 </html>
